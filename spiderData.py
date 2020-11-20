@@ -22,7 +22,7 @@ def search_info(keyword):
     response = requests.get(url,headers = headers)
     response.encoding = 'utf-8'
     #打印出得到的结果
-    print(response.text)
+    # print(response.text)
     source = etree.HTML(response.text)
     results =  source.xpath('//*[@id]/@data-tools')
     for r in results:

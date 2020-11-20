@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>搜索引擎</title>
-  <style type="text/css">
-     #content {
-    height: 100px;
-    line-height: 100px;
-}
-
-      #content2 {
-    position: absolute;
-    top: 40%;
-          left: 35%;
-
-}
-</style>
-</head>
-<body>
-
-<div id="content2">
-    <form action = '/search' method="get" style="font-size: 20pt">
-
-    搜索：<input type="text" name="wd" style="font-size: 20pt"  />
-    <input type="submit" style="font-size: 20pt" value="Python一下，您就知道"/>
 
 
-</form>
-</div>
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Search form -->
+        <div class="md-form mt-0">
+          <form action = '/search' method="get" style="font-size: 20pt">
+          <input id="one" class="form-control" type="text" name="wd" placeholder="Search" aria-label="Search">
+        </form>
+        </div>
+      </div>
 
+      <div class="col-md-6">
+        <!-- Search form -->
+        <input id="two" class="form-control" type="text" placeholder="Search" aria-label="Search">
+      </div>
+    </div>
+  </div>
 
+{% if num %}
 
-</body>
-</html>
+<a href=”#” onClick="javascript :history.back(-1);" style="font-size: 10pt">返回</a>
+<h2 align="left" style="font-size: 10pt"> 搜索结果:共<font color="red">{{ num }}</font>条数据 </h2>
+
+{%for i in data%}
+    <a href="{{ i['url'] }}" target="_blank" style="font-size: 10pt"> {{ i['title'] }}</a>
+    <a href="{{ i['url'] }}" target="_blank" style="font-size: 10pt"> 链接 {{ i['url'] }}</a></br>
+    <br>
+{% endfor %}
+{% endif %}
