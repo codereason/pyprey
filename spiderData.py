@@ -35,3 +35,9 @@ def search_info(keyword):
         except Exception as e:
             continue
     return results_list
+
+if __name__ == "__main__":
+    print(search_info("12"))
+    from flask import Flask,  render_template, jsonify, request
+
+    print(jsonify(search_info("12")))
