@@ -1,7 +1,10 @@
 <template>
     <div class="home">
 
-        <logo class="ha"></logo>
+        <!-- <logo class="ha"></logo> -->
+        <div class="upper">
+            <img src="./../assets/hakuna.png" >
+        </div>
         <div class="search-input">
             <a-input-search
                     size="large"

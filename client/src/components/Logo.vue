@@ -1,11 +1,11 @@
 <template>
     <div>
-        <span class="logo logo-blue">H</span>
-        <span class="logo logo-red">a</span>
-        <span class="logo logo-yellow">k</span>
-        <span class="logo logo-blue">u</span>
-        <span class="logo logo-green">n</span>
-        <span class="logo logo-red">a</span>
+        <span class="logo logo-blue">p</span>
+        <span class="logo logo-red">y</span>
+        <span class="logo logo-yellow">p</span>
+        <span class="logo logo-blue">r</span>
+        <span class="logo logo-green">e</span>
+        <span class="logo logo-red">y</span>
 
     </div>
 </template>
