@@ -2,7 +2,7 @@ from flask import Flask,  render_template, jsonify, request
 from flask_cors import CORS
 
 from spiderData import search_info
-
+from search.es.esquery import search_douban
 app = Flask(__name__)
 CORS(app)
 
@@ -21,11 +21,14 @@ def hello_world():
 def search():
     keyword = request.args.get('wd')
     print(keyword)
-    result = search_info(keyword)
+    result = search_douban(keyword)
     # print(result)
     # print(jsonify(result))
     # return jsonify(result)
-    return render_template('/index.html',data = result,num = len(result))
+    # print(len(result))
+    hits =  result['hits']['hits']
+    print(result)
+    return render_template('/index.html',data = hits,num = len(result))
 
 
 
