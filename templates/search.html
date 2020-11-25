@@ -6,7 +6,11 @@
         <!-- Search form -->
         <div class="md-form mt-0">
           <form action = '/search' method="get" style="font-size: 20pt">
-          <input id="one" class="form-control" type="text" name="wd" placeholder="Search" aria-label="Search">
+            {% if query %} 
+          <input id="one" class="form-control" type="text"  placeholder="{{query}}"  name="wd" placeholder="Search" aria-label="Search">
+          {% else %}
+          <input id="one" class="form-control" type="text"   name="wd" placeholder="Search" aria-label="Search">
+          {% endif %}
         </form>
         </div>
       </div>
@@ -27,16 +31,21 @@
     <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> {{ i['_source']['name'] }}</a>
     <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 链接 {{ i['_source']['url'] }}</a></br>
     <br>
-<a  target="_blank" style="font-size: 10pt"> 时间 {{ i['_source']['time'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 时间：{{ i['_source']['time'] }}</a>
 <br>
-<a target="_blank" style="font-size: 10pt"> 国家 {{ i['_source']['country'] }}</a>
+<a target="_blank" style="font-size: 10pt"> 国家：{{ i['_source']['country'] }}</a>
 <br>
-<a  target="_blank" style="font-size: 10pt"> 类型 {{ i['_source']['genre'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 类型：{{ i['_source']['genre'] }}</a>
 <br>
-<a  target="_blank" style="font-size: 10pt"> 评分 {{ i['_source']['star'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 评分：{{ i['_source']['star'] }}</a>
 <br>
-<a  target="_blank" style="font-size: 10pt"> 评价 {{ i['_source']['describe'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 评价：{{ i['_source']['describe'] }}</a>
 <br>
 <br>
 {% endfor %}
 {% endif %}
+
+{% if not num  %}
+没有找到您想找的。也许您对以下内容感兴趣
+{% endif %}
+
