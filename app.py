@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from crawler.spiderData import search_info
 from search.es.esquery import search_douban
+from ranking. import *
 app = Flask(__name__)
 CORS(app)
 
@@ -22,15 +23,15 @@ def search():
     '''
 
     '''
-    keyword = request.args.get('wd') or ""
-    print(keyword)
-    if keyword == "":
+    query = request.args.get('wd') or ""
+    print(query)
+    if query == "":
         '''
         不搜索展示默认页
         默认页展示最新最热数据
         '''
         return render_template('/index.html')
-    result = search_douban(keyword)
+    result = search_douban(query)
     # print(result)
     # print(jsonify(result))
     # return jsonify(result)
@@ -44,7 +45,10 @@ def search():
             for key in list(hl_keys):
                 hits[i]['_source'][key] = hl[key][0]
     print(hits)
-    return render_template('/index.html',data = hits,num = len(hits))
+    
+    #rerank
+
+    return render_template('/search.html',data = hits,num = len(hits))
 
 
 

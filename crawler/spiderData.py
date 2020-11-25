@@ -37,7 +37,7 @@ def search_info(keyword):
     return results_list
 
 if __name__ == "__main__":
-    print(search_info("12"))
-    from flask import Flask,  render_template, jsonify, request
+    print(search_info("你好"))
+    from flask import jsonify
 
-    print(jsonify(search_info("12")))
+    # print(jsonify(search_info("12")))
