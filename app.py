@@ -1,42 +1,38 @@
-from flask import Flask,  render_template, jsonify, request
-from flask_cors import CORS
+# coding=utf-8
+import uvicorn
+from fastapi import FastAPI
+from fastapi import Request
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+import sys
+
+sys.path.append('')
 from crawler.spiderData import search_info
 from search.es.esquery import search_douban
-from ranking. import *
-app = Flask(__name__)
-CORS(app)
-
-import sys
-sys.path.append('')
-
-app = Flask(__name__)
-app.config['TEMPLATES_AUTO_RELOAD'] = True
-
-@app.route('/')
-def hello_world():
-    return render_template('/index.html')
+# from ranking import *
+from loggers import build_timed_logger
 
 
-@app.route('/search',methods=["POST","GET"])
-def search():
-    '''
+@app.get("/", response_class=HTMLResponse)
+def hello_world(request: Request):
+    return templates.TemplateResponse("search.html", {"request": request})
 
-    '''
-    query = request.args.get('wd') or ""
+
+@app.get('/search/')
+async def search(request: Request):
+    query = request.query_params['wd'] or ""
     print(query)
     if query == "":
         '''
         不搜索展示默认页
         默认页展示最新最热数据
         '''
-        return render_template('/index.html')
+        return templates.TemplateResponse('search.html', {"request": request})
     result = search_douban(query)
-    # print(result)
-    # print(jsonify(result))
-    # return jsonify(result)
-    # print(len(result))
-    hits =  result['hits']['hits']
+    hits = result['hits']['hits']
     # print(result)
     for i in range(len(hits)):
         if hits[i].get('highlight'):
@@ -45,12 +41,14 @@ def search():
             for key in list(hl_keys):
                 hits[i]['_source'][key] = hl[key][0]
     print(hits)
-    
-    #rerank
 
-    return render_template('/search.html',data = hits,num = len(hits))
-
-
+    # rerank
+    # vectorization ann matching
+    # candids = 
+    # rank = 
+    # rank_results = 
+    return templates.TemplateResponse('search.html', {"request": request, "data": hits, "num": len(hits)})
+    # return {"1":request.query_params['wd']}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    uvicorn.run(app, host='127.0.0.1', port=8000, debug=True, reload=True)

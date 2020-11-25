@@ -21,7 +21,7 @@ stacks:
   - [x] TF-ranking
   - [x] Bert
 - [ ] Advanced Search Applications
-  - [x] Query Rewrite/Correct/Suggest/Segment
+  - [x] Query Rewrite/Correct/Suggest/Segment/Vectorization（Query向量化召回）/
   - [x] Auto Complete
   - [x] Query Analysis
   - [x] Abtest
@@ -30,4 +30,4 @@ stacks:
   - [x] Model Serving
   - [x] Parameter Server  
 - [ ] Web Services
-  - [x] Flask (used for testing env)
+  - [x] Fastapi (used for testing env)
