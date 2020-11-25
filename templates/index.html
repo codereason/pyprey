@@ -18,7 +18,7 @@
     </div>
   </div>
 
-{% if num %}
+{% if num  %}
 
 <a href=”#” onClick="javascript :history.back(-1);" style="font-size: 10pt">返回</a>
 <h2 align="left" style="font-size: 10pt"> 搜索结果:共<font color="red">{{ num }}</font>条数据 </h2>
@@ -27,10 +27,16 @@
     <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> {{ i['_source']['name'] }}</a>
     <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 链接 {{ i['_source']['url'] }}</a></br>
     <br>
-<a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 时间 {{ i['_source']['time'] }}</a><br>
-<a href="{{ i['_source']['url']}}" target="_blank" style="font-size: 10pt"> 国家 {{ i['_source']['country'] }}</a><br>
-<a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 类型 {{ i['_source']['genre'] }}</a><br>
-<a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 评分 {{ i['_source']['star'] }}</a><br>
-<a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 评价 {{ i['_source']['describe'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 时间 {{ i['_source']['time'] }}</a>
+<br>
+<a target="_blank" style="font-size: 10pt"> 国家 {{ i['_source']['country'] }}</a>
+<br>
+<a  target="_blank" style="font-size: 10pt"> 类型 {{ i['_source']['genre'] }}</a>
+<br>
+<a  target="_blank" style="font-size: 10pt"> 评分 {{ i['_source']['star'] }}</a>
+<br>
+<a  target="_blank" style="font-size: 10pt"> 评价 {{ i['_source']['describe'] }}</a>
+<br>
+<br>
 {% endfor %}
 {% endif %}

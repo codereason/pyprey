@@ -1,7 +1,7 @@
 from flask import Flask,  render_template, jsonify, request
 from flask_cors import CORS
 
-from spiderData import search_info
+from crawler.spiderData import search_info
 from search.es.esquery import search_douban
 app = Flask(__name__)
 CORS(app)
@@ -19,16 +19,32 @@ def hello_world():
 
 @app.route('/search',methods=["POST","GET"])
 def search():
-    keyword = request.args.get('wd')
+    '''
+
+    '''
+    keyword = request.args.get('wd') or ""
     print(keyword)
+    if keyword == "":
+        '''
+        不搜索展示默认页
+        默认页展示最新最热数据
+        '''
+        return render_template('/index.html')
     result = search_douban(keyword)
     # print(result)
     # print(jsonify(result))
     # return jsonify(result)
     # print(len(result))
     hits =  result['hits']['hits']
-    print(result)
-    return render_template('/index.html',data = hits,num = len(result))
+    # print(result)
+    for i in range(len(hits)):
+        if hits[i].get('highlight'):
+            hl = hits[i].get('highlight')
+            hl_keys = hl.keys()
+            for key in list(hl_keys):
+                hits[i]['_source'][key] = hl[key][0]
+    print(hits)
+    return render_template('/index.html',data = hits,num = len(hits))
 
 
 
