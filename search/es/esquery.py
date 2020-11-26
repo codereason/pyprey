@@ -17,6 +17,10 @@ def search_douban(query: str):
             }
         },
         "highlight": {
+            "boundary_scanner_locale":"zh_CN",
+            "boundary_scanner":"sentence",
+            "pre_tags": ["<mark>"],
+            "post_tags": ["</mark>"],
             "fields": {
                 "name": {},
                 "genre": {},

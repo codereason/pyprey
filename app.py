@@ -28,7 +28,7 @@ async def search(request: Request):
         不搜索展示默认页
         默认页展示最新最热数据
         '''
-        return templates.TemplateResponse('search.html', {"request": request})
+        return templates.TemplateResponse('search.html', {"request": request, "num": 0})
     result = search_douban(query)
     hits = result['hits']['hits']
     # print(result)
@@ -47,8 +47,9 @@ async def search(request: Request):
     # rank = 
     # scoring =
     # rank_results = 
-    return templates.TemplateResponse('search.html', {"request": request, "data": hits, "num": len(hits),"query":query})
-    
+    return templates.TemplateResponse('search.html',
+                                      {"request": request, "data": hits, "num": len(hits), "query": query})
+
 
 if __name__ == '__main__':
     uvicorn.run(app, host='127.0.0.1', port=8000, debug=True, reload=True)
