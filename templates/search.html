@@ -6,7 +6,11 @@
         <!-- Search form -->
         <div class="md-form mt-0">
           <form action = '/search' method="get" style="font-size: 20pt">
-          <input id="one" class="form-control" type="text" name="wd" placeholder="Search" aria-label="Search">
+            {% if query %} 
+          <input id="one" class="form-control" type="text"  placeholder="{{query}}"  name="wd" placeholder="Search" aria-label="Search">
+          {% else %}
+          <input id="one" class="form-control" type="text"   name="wd" placeholder="Search" aria-label="Search">
+          {% endif %}
         </form>
         </div>
       </div>
@@ -17,26 +21,37 @@
       </div>
     </div>
   </div>
+<!-- 
+      <style>
+            em {
+               background-color:#ff0000; font-weight:bold;
+            }
+       </style> -->
 
 {% if num  %}
 
 <a href=”#” onClick="javascript :history.back(-1);" style="font-size: 10pt">返回</a>
-<h2 align="left" style="font-size: 10pt"> 搜索结果:共<font color="red">{{ num }}</font>条数据 </h2>
+<h2 align="left" style="font-size: 10pt"> 搜索结果:共<font color="red">{{ num|safe }}</font>条数据 </h2>
 
 {%for i in data%}
-    <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> {{ i['_source']['name'] }}</a>
-    <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 链接 {{ i['_source']['url'] }}</a></br>
+    <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> {{ i['_source']['name']|safe }}</a>
+    <a href="{{ i['_source']['url'] }}" target="_blank" style="font-size: 10pt"> 链接 {{ i['_source']['url']|safe }}</a></br>
     <br>
-<a  target="_blank" style="font-size: 10pt"> 时间 {{ i['_source']['time'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 时间：{{ i['_source']['time'] |safe }}</a>
 <br>
-<a target="_blank" style="font-size: 10pt"> 国家 {{ i['_source']['country'] }}</a>
+<a target="_blank" style="font-size: 10pt"> 国家：{{ i['_source']['country'] |safe }}</a>
 <br>
-<a  target="_blank" style="font-size: 10pt"> 类型 {{ i['_source']['genre'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 类型：{{ i['_source']['genre'] |safe }}</a>
 <br>
-<a  target="_blank" style="font-size: 10pt"> 评分 {{ i['_source']['star'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 评分：{{ i['_source']['star'] |safe }}</a>
 <br>
-<a  target="_blank" style="font-size: 10pt"> 评价 {{ i['_source']['describe'] }}</a>
+<a  target="_blank" style="font-size: 10pt"> 评价：{{ i['_source']['describe'] |safe }}</a>
 <br>
 <br>
 {% endfor %}
 {% endif %}
+
+<!--{% if not num  %}-->
+<!--没有找到您想找的。也许您对以下内容感兴趣-->
+<!--{% endif %}-->
+
