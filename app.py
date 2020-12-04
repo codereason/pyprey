@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-
+import configparser
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 import sys
@@ -20,7 +20,7 @@ def hello_world(request: Request):
 
 
 @app.get('/search/')
-async def search(request: Request):
+async def serve_and_search(request: Request):
     query = request.query_params['wd'] if request.query_params.get('wd') else ""
     print(query)
     if query == "":
