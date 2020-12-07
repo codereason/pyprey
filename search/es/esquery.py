@@ -1,3 +1,4 @@
+#coding=utf-8
 """
 elasticsearch
 
@@ -33,3 +34,6 @@ def search_douban(query: str):
 
     result = es.search(index='douban', docvalue_fields=['movies'], body=dsl, size=20)
     return result
+
+if __name__ == "__main__":
+    pass
