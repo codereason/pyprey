@@ -12,7 +12,7 @@ sys.path.append('')
 from search.es.esquery import search_douban
 # from ranking import *
 from loggers import build_timed_logger
-
+from conf.config import Config 
 
 @app.get("/", response_class=HTMLResponse)
 def hello_world(request: Request):

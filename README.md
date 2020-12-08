@@ -10,8 +10,8 @@ stacks:
   - [x] Sch 调度器。用于docs的全量爬取、增量爬取
 - [x] Indexing
   - [x] HNSW
-  - [x] Xapian
-  - [x] Faiss and Annoy ... many more...
+  - [x] XapianQuery Expansion
+  - [x] Faiss and Annoy ... and many more...
 - [ ] Search 
   - [x] Elasticsearch
   - [x] milvus
@@ -21,7 +21,7 @@ stacks:
   - [x] TF-ranking
   - [x] Bert
 - [ ] Advanced Search Applications
-  - [x] Query Rewrite/Correct/Suggest/Segment/Vectorization（Query向量化召回）/
+  - [x] Query Rewrite/Correct/Expansion/Suggest/Segmentation/Vectorization（Query向量化召回）/
   - [x] Auto Complete
   - [x] Query Analysis
   - [x] Abtest

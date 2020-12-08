@@ -1,3 +1,4 @@
+#coding=utf-8
 """
 elasticsearch
 
@@ -6,7 +7,10 @@ elasticsearch
 from elasticsearch import Elasticsearch
 
 es = Elasticsearch()
-
+import sys
+sys.path.append("..")
+sys.path.append(".")
+from conf.config import *
 
 def search_douban(query: str):
     dsl = {
@@ -33,3 +37,4 @@ def search_douban(query: str):
 
     result = es.search(index='douban', docvalue_fields=['movies'], body=dsl, size=20)
     return result
+
