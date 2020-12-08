@@ -6,7 +6,15 @@
 import scrapy
 
 
-class ZhihuActivItem(scrapy.Item):
+class ZhihuItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    flag = scrapy.Field()
+    pass
+
+
+class CsdnBlogItem(scrapy.Item):
+    pass
+
+class CsdnBlogItem(scrapy.Item):
     pass

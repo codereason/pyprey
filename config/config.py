@@ -1,7 +1,7 @@
 # -* - coding: UTF-8 -* -
 import configparser
 import sys
-sys.path.append(__file__)
+# sys.path.append(__file__)
 
 class Config(object):
     def __init__(self,config_path='config.ini'):
@@ -17,14 +17,15 @@ class Config(object):
             self.conf_dict[section] = {i[0]:i[1] for i in self.conf.items(section)}
             
         return self.conf_dict
-
-# if __name__ == "__main__":
 # cf = Config()
-# get_cf = cf.get_configs()
-# print(get_cf)
-    # print(['nlp']['STOP_WORDS_PATH'])
-
+# print(cf.get_configs())
 if __name__ == "__main__":
     cf = Config()
     get_cf = cf.get_configs()
-    print(get_cf)
+# print(get_cf)
+    # print(['nlp']['STOP_WORDS_PATH'])
+#
+# if __name__ == "__main__":
+#     cf = Config()
+#     get_cf = cf.get_configs()
+#     print(get_cf)
