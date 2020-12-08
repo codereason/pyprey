@@ -1,10 +1,7 @@
 import logging
-import time
 from logging.handlers import TimedRotatingFileHandler
 
-import pkg_resources
-import config
-from config import cf
+from config.config import cf
 
 
 def build_timed_logger(name: str,filename: str):

@@ -1,4 +1,8 @@
 # coding=utf-8
+from conf.config import Config
+from loggers import build_timed_logger
+from search.es.esquery import search_douban
+import sys
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
@@ -6,13 +10,10 @@ from fastapi.responses import HTMLResponse
 import configparser
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-import sys
 
 sys.path.append('')
-from search.es.esquery import search_douban
 # from ranking import *
-from loggers import build_timed_logger
-from conf.config import Config 
+
 
 @app.get("/", response_class=HTMLResponse)
 def hello_world(request: Request):
@@ -21,7 +22,8 @@ def hello_world(request: Request):
 
 @app.get('/search/')
 async def serve_and_search(request: Request):
-    query = request.query_params['wd'] if request.query_params.get('wd') else ""
+    query = request.query_params['wd'] if request.query_params.get(
+        'wd') else ""
     print(query)
     if query == "":
         '''
@@ -43,10 +45,10 @@ async def serve_and_search(request: Request):
         print(query)
 
     # vectorization ann matching
-    # candids = 
-    # rank = 
+    # candids =
+    # rank =
     # scoring =
-    # rank_results = 
+    # rank_results =
     return templates.TemplateResponse('search.html',
                                       {"request": request, "data": hits, "num": len(hits), "query": query})
 

@@ -7,11 +7,9 @@ elasticsearch
 from elasticsearch import Elasticsearch
 
 es = Elasticsearch()
-import sys
-sys.path.append("..")
-sys.path.append(".")
-from conf.config import *
-
+from config.config import Config
+cf = Config("../../config/config.ini")
+print(cf.get_configs())
 def search_douban(query: str):
     dsl = {
         "query": {
