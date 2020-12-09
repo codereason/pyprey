@@ -1,4 +1,3 @@
-# -* - coding: UTF-8 -* -
 import configparser
 import sys
 # sys.path.append(__file__)
