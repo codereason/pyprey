@@ -13,6 +13,7 @@ SPIDER_MODULES = ['zhihu_activ.spiders']
 NEWSPIDER_MODULE = 'zhihu_activ.spiders'
 ITEM_PIPELINES = {
 #    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 10,
+    'crawlers.zhihu_activ.zhihu_activ.pipelines.ZhihuMongoPipeline':10
 }
 
 
