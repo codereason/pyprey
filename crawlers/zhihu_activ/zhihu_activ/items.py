@@ -19,6 +19,7 @@ class ZhihuItem(scrapy.Item):
     content = scrapy.Field()
     flag = scrapy.Field()
     time = scrapy.Field()
+    source_flag = scrapy.Field()
     pass
 
 

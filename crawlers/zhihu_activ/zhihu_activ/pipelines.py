@@ -41,7 +41,9 @@ class ZhihuMongoPipeline(object):
 
     def process_item(self, item, spider):
         name = item.__class__.__name__
-        self.db[name].insert(dict(item))
+        source_flag = item.get('source_flag')
+
+        self.db[source_flag].insert(dict(item))
         return item
 
 

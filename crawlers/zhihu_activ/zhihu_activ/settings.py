@@ -13,7 +13,7 @@ SPIDER_MODULES = ['zhihu_activ.spiders']
 NEWSPIDER_MODULE = 'zhihu_activ.spiders'
 ITEM_PIPELINES = {
 #    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 10,
-    'crawlers.zhihu_activ.zhihu_activ.pipelines.ZhihuMongoPipeline':10
+    'zhihu_activ.pipelines.ZhihuMongoPipeline':10
 }
 
 
@@ -90,3 +90,5 @@ DOWNLOAD_DELAY = 3
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+MONGO_DB='zhihu'
+MONGO_URI='mongodb://localhost:27017/'

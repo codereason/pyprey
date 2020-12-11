@@ -52,7 +52,7 @@ class ZhihuSelfActSpider(CrawlSpider):
                 item['content'] = data[i]['target'].get('title')
                 item['writer'] = data[i]['target']['author']['name']
                 # print(item)
-
+                item['source_flag'] = 'zhihu_self_act'
                 yield item
 
         if json_url:
@@ -123,7 +123,7 @@ class ZhihuSelfActSpider(CrawlSpider):
             item['time'] = joined[i].get('createdTime')
             item['content'] = joined[i].get('title')
             item['writer'] = joined[i].get('author_name')
-
+            item['source_flag'] = 'zhihu_self_act'
             yield item
 
         self.json_url = jj['initialState']['people']['activitiesByUser'].get(self.user_name)['next']
