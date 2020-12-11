@@ -12,6 +12,10 @@ def get_id_and_action_from_actions_feed(act):
 def join_action_feed_with_articles():
     pass
 
+import datetime
 
+def convert_unix_ts(ts):
+    value = datetime.datetime.fromtimestamp(ts)
+    return f"{value:%Y-%m-%d %H:%M}"
 
 

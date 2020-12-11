@@ -4,7 +4,7 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import json
-
+from utils import convert_unix_ts
 from zhihu_activ.items import ZhihuItem
 import logging
 
@@ -48,7 +48,7 @@ class ZhihuSelfActSpider(CrawlSpider):
 
                 item['id'] = data[i]['target']['id']
                 item['action'] = data[i].get('action_text')
-                item['time'] = data[i].get('created_time')
+                item['action_time'] = convert_unix_ts(int(data[i].get('created_time')))
                 item['content'] = data[i]['target'].get('title')
                 item['writer'] = data[i]['target']['author']['name']
                 # print(item)
@@ -120,7 +120,7 @@ class ZhihuSelfActSpider(CrawlSpider):
             item = ZhihuItem()
             item['id'] = joined[i].get('article_id')
             item['action'] = joined[i].get('action')
-            item['time'] = joined[i].get('createdTime')
+            item['action_time'] = convert_unix_ts(joined[i].get('createdTime'))
             item['content'] = joined[i].get('title')
             item['writer'] = joined[i].get('author_name')
             item['source_flag'] = 'zhihu_self_act'

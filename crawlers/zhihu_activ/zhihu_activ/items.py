@@ -18,7 +18,7 @@ class ZhihuItem(scrapy.Item):
     question = scrapy.Field()
     content = scrapy.Field()
     flag = scrapy.Field()
-    time = scrapy.Field()
+    action_time = scrapy.Field()
     source_flag = scrapy.Field()
     pass
 
@@ -29,5 +29,3 @@ class CsdnBlogItem(scrapy.Item):
 class JianshuBlogItem(scrapy.Item):
     pass
 
-class JianshuBlogItem(scrapy.Item):
-    pass
